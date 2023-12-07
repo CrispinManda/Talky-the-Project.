@@ -11,6 +11,13 @@
         <textarea placeholder="What do you have in mind?" rows="1" class="w-full resize-none !bg-transparent px-4 py-2 focus:!border-transparent focus:!ring-transparent text-center dark:text-white" [(ngModel)]="postContent"></textarea>
         <div class="p-1 transition-all rounded-lg cursor-pointer">
           <input type="file" accept="image/*" (change)="onImageSelect($event)">
+          <select name="taggedUsers" id="">
+            <option>Friend1</option>
+            <option>Friend2</option>
+            <option>Friend3</option>
+            <option>Friend4</option>
+          </select>
+          
         </div>
       </div>
 

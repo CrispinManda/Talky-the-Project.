@@ -1,0 +1,6 @@
+/* Add these styles to your component's CSS or styles.css file */
+
+#crud-modal.show,
+#crud-modal-overlay.show {
+  display: block;
+}

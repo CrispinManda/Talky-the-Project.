@@ -22,6 +22,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { TalkyComponent } from './talky/talky.component';
 import { PhotoUploadDialogComponent } from './photo-upload-dialog/photo-upload-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { PostCreateModalComponent } from './post-create-modal/post-create-modal.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { FormsModule } from '@angular/forms';
     ProfileComponent,
     NotFoundComponent,
     TalkyComponent,
-    PhotoUploadDialogComponent
+    PhotoUploadDialogComponent,
+    PostCreateModalComponent
   ],
   imports: [
     BrowserModule,
