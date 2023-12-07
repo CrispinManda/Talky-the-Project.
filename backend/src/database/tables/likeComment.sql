@@ -1,0 +1,8 @@
+CREATE TABLE LikeComment (
+    LikeID INT PRIMARY KEY,
+    UserID INT,
+    CommentID INT,
+    Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    FOREIGN KEY (CommentID) REFERENCES Comments(CommentID)
+);

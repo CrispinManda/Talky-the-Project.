@@ -1,0 +1,33 @@
+                       
+
+                                         
+  <!-- feed story -->
+  <div class="md:max-w-[510px] mx-auto flex-1 xl:space-y-6 space-y-3">
+  
+    <!-- add story -->
+  <div class="bg-white rounded-xl shadow-sm p-4 space-y-4 text-sm font-medium border1 dark:bg-dark2">
+    <div class="flex items-center gap-3">
+      <div class="flex-1 bg-sky-100 hover:bg-opacity-80 transition-all rounded-lg cursor-pointer dark:bg-dark3">
+        <textarea placeholder="What do you have in mind?" rows="1" class="w-full resize-none !bg-transparent px-4 py-2 focus:!border-transparent focus:!ring-transparent text-center dark:text-white" [(ngModel)]="postContent"></textarea>
+        <div class="p-1 transition-all rounded-lg cursor-pointer">
+          <input type="file" accept="image/*" (change)="onImageSelect($event)">
+        </div>
+      </div>
+
+      <div class="p-2 hover:bg-opacity-80 transition-all rounded-lg cursor-pointer" (click)="onSubmit()">
+        <button class="bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full">
+          Post
+        </button>
+      </div>
+    </div>
+   </div>
+               
+   </div>
+
+                         
+                         
+                         
+                         
+                         
+                         
+  

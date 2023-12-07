@@ -1,0 +1,10 @@
+DROP TABLE Follower
+
+CREATE TABLE Follower (
+    FollowerID INT PRIMARY KEY,
+    FollowerUserID INT,
+    FollowingUserID INT,
+    Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (FollowerUserID) REFERENCES Users(UserID),
+    FOREIGN KEY (FollowingUserID) REFERENCES Users(UserID)
+);

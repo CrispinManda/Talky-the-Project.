@@ -1,0 +1,31 @@
+<app-sidebar></app-sidebar>
+<div class="flex justify-center items-center " >
+    <div class="bg-white p-8  rounded-lg mt-10  w-96" style="width: 800px; margin-left: 300px;">
+      <div class="mb-6">
+        <!-- Image Upload -->
+        <label for="profile-image" class="block text-sm font-medium text-gray-700">Profile Image</label>
+        <div class="relative md:w-40 md:h-40 h-16 w-16 rounded-full overflow-hidden md:border-[6px] border-gray-100 shrink-0 dark:border-slate-900">
+            <img [src]="Image" alt="" class="w-full h-full absolute object-cover">
+          </div>
+        <input id="profile-image" type="file" (change)="handleImageUpload($event)" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-300">
+      </div>
+  
+      <div class="mb-6">
+        <!-- Bio -->
+        <label for="bio" class="block text-sm font-medium text-gray-700">Bio</label>
+        <textarea id="bio" [(ngModel)]="bio" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-300"></textarea>
+      </div>
+  
+      <div class="mb-6">
+        <!-- Gender -->
+        <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+        <select id="gender" [(ngModel)]="gender" class="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-300">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+  
+      <button (click)="saveProfile()" class=" text-dark py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300" style=" background-color: #F1F5F9;">Save</button>
+    </div>
+  </div>
+  

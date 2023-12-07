@@ -1,0 +1,9 @@
+
+CREATE TABLE LikePost (
+    LikeID INT PRIMARY KEY,
+    UserID INT,
+    PostID INT,
+    Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    FOREIGN KEY (PostID) REFERENCES Posts(PostID)
+);
