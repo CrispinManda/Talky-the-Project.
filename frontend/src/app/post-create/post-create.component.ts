@@ -9,6 +9,7 @@ import * as cloudinary from 'cloudinary-core';
 export class PostCreateComponent {
   postContent: string = '';
   selectedImage: File | null = null;
+hidden: any;
 
   onContentChange(content: string): void {
     this.postContent = content;

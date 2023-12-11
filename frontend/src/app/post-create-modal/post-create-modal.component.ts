@@ -9,7 +9,7 @@ import { FileUploader, FileItem } from 'ng2-file-upload';
   styleUrls: ['./post-create-modal.component.css']
 })
 export class PostCreateModalComponent implements OnInit {
-  hidden=true
+  hidden=true;
 createPost() {
 throw new Error('Method not implemented.');
 }
@@ -41,17 +41,9 @@ throw new Error('Method not implemented.');
 
   }
 
-  showModal(): void {
-    // Add logic to show the modal and overlay
-    document.getElementById('crud-modal').classList.add('show');
-    document.getElementById('crud-modal-overlay').classList.add('show');
-  }
 
-  hideModal(): void {
-    // Add logic to hide the modal and overlay
-    document.getElementById('crud-modal').classList.remove('show');
-    document.getElementById('crud-modal-overlay').classList.remove('show');
-  }
+
+
 
 
 }
