@@ -21,8 +21,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { TalkyComponent } from './talky/talky.component';
 import { PhotoUploadDialogComponent } from './photo-upload-dialog/photo-upload-dialog.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostCreateModalComponent } from './post-create-modal/post-create-modal.component';
+import {  HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,9 @@ import { PostCreateModalComponent } from './post-create-modal/post-create-modal.
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7987,4 +7987,9 @@ body:has(#mood.active) {
  
  
 
- 
+
+@media (max-width: 579px) {
+  .content {
+    margin-right: 180px;
+  }
+}

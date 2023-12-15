@@ -4,6 +4,7 @@ import employee_router from './routes/employeeRoutes'
 import projects_router from './routes/projectRoutes'
 import teamsRouter from './routes/teamsRoutes'
 import User_router from './routes/userRoutes'
+import post_router from './routes/postRoutes'
 
 const app = express()
 
@@ -14,6 +15,7 @@ app.use('/employee', employee_router)
 app.use('/projects', projects_router)
 app.use('/teams', teamsRouter)
 app.use('/user',User_router )
+app.use('/post',post_router )
 
 app.use((error: Error, req:Request, res:Response, next:NextFunction)=>{
     res.json({

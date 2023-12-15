@@ -1,5 +1,5 @@
 CREATE TABLE Users (
-    UserID VARCHAR(100) NOT NULL ,
+    UserID VARCHAR(100) NOT NULL ,      
     Username VARCHAR(50) UNIQUE NOT NULL,
     Password VARCHAR(100) NOT NULL,
     Email VARCHAR(100) NOT NULL,
@@ -10,6 +10,8 @@ CREATE TABLE Users (
     FollowersCount INT DEFAULT 0,
     FollowingCount INT DEFAULT 0,
     PostsCount INT DEFAULT 0,
+    welcomed BIT DEFAULT 0,
+    emailsent BIT DEFAULT 0,
 
 );
 

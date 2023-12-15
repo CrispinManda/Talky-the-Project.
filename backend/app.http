@@ -1,107 +1,3 @@
-POST http://localhost:4400/employee/register
-Content-Type: application/json
-
-{
-    "name": "DaNIel Kitheka",
-    "email": "dan04@yopmail.com",
-    "phone_no": "7509294560",
-    "id_no": 310444531,
-    "KRA_PIN": "KRAF43792Y",
-    "NHIF_NO": "NHIF93040H",
-    "NSSF_NO": "NS118N34D",
-    "password": "12345678"
-}
-
-
-### login 
-POST http://localhost:4400/employee/login
-Content-Type: application/json
-
-{
-    "email": "dan@yopmail.com",
-    "password": "12345678"
-}
-
-### fetching employees
-GET http://localhost:4400/employee
-Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZV9pZCI6ImRmZTI4ZDA3LTJhM2EtNDdmNC05MDBjLWNmMzc2ZTE5OThkYiIsIm5hbWUiOiJEYW5pZWwgS2l0aGVrYSIsImVtYWlsIjoiZGFuQHlvcG1haWwuY29tIiwicm9sZSI6ImVtcGxveWVlIiwiaXNEZWxldGVkIjp0cnVlLCJpYXQiOjE3MDEyNDI4MDAsImV4cCI6MTcwMTMyOTIwMH0.BxNd15Y1IX1AaXDg70BRQt7WI_JhWRXWySMN_PoSAaw
-
-
-### fetching one employee
-GET http://localhost:4400/employee/4098b7ca-4cd3-42f0-9504-78d94f59f162
-Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZV9pZCI6ImRmZTI4ZDA3LTJhM2EtNDdmNC05MDBjLWNmMzc2ZTE5OThkYiIsIm5hbWUiOiJEYW5pZWwgS2l0aGVrYSIsImVtYWlsIjoiZGFuQHlvcG1haWwuY29tIiwicm9sZSI6ImVtcGxveWVlIiwiaXNEZWxldGVkIjpmYWxzZSwiaWF0IjoxNzAwMzQyNjEyLCJleHAiOjE3MDAzNDYyMTJ9.YVvDdAanyf3HpS4Cgq8VJKLVxVU51zc0JBW0xYENXQ8
-
-### checking user details
-GET http://localhost:4400/employee/check_user_details
-Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZV9pZCI6ImRmZTI4ZDA3LTJhM2EtNDdmNC05MDBjLWNmMzc2ZTE5OThkYiIsIm5hbWUiOiJEYW5pZWwgS2l0aGVrYSIsImVtYWlsIjoiZGFuQHlvcG1haWwuY29tIiwicm9sZSI6ImVtcGxveWVlIiwiaXNEZWxldGVkIjp0cnVlLCJpYXQiOjE3MDA0NjQwOTIsImV4cCI6MTcwMDU1MDQ5Mn0.q3gT-P3dN8R3pilhSYbJD576jMg1KxN6xKgNNNVMCps
-
-### Delete Employee
-PUT http://localhost:4400/employee/4098b7ca-4cd3-42f0-9504-78d94f59f162
-Content-Type: application/json
-
-{
-    "isDeleted": true
-}
-
-
-
-####PROJECT ROUTES
-POST http://localhost:4400/projects/create
-Content-Type: application/json
-
-{
-    "project_name": "Project 1234",
-    "project_description": "Build a construction 1234",
-    "project_deadline": "2023-04-05",
-    "assigned_to": ""
-}
-
-###FETCH ALL PROJECTS
-
-GET http://localhost:4400/projects/
-
-
-### Fetch one project
-GET http://localhost:4400/projects/e7173ed3-545d-43d4-a463-6cf79c175fe5
-
-### Deleting a project 
-DELETE http://localhost:4400/projects/19ed8e8f-7cb3-44ef-9790-c7078949a38c
-
-
-
-### Update a project by ID
-PUT http://localhost:4400/projects/ffc3025c-42d1-4422-896a-964af22107fd
-Content-Type: application/json
-
-{
-    "project_name": "Project AB",
-    "project_description": "Build a construction AB",
-    "project_deadline": "2024-05-05",
-    "assigned_to": ""
-}
-
-
-###TEAMS TOUTES
-
-POST http://localhost:4400/teams/create
-Content-Type: application/json
-
-{
-    "team_Name": "Manchester Red",
-    "members": "dd74433f-c1f4-4305-9e8d-6cca13384712 , 915d2e63-db51-47ea-a027-74f14955178e",
-    "project_assigned": "7992cb0d-4006-46d3-83da-7c9b035af96f"
-}
-
-### GET ALL TEAMS
-
-GET http://localhost:4400/teams/
-
-
-### GET ONE TEAM
-GET http://localhost:4400/teams/41177255-ccd1-4020-b301-8209ff3650a3
 
 
 ### register user
@@ -110,12 +6,9 @@ POST http://localhost:4400/user/register
 Content-Type: application/json
 
 {
-    "Username": "your_username",
-    "Email": "your_email@example.com",
-    "Password": "your_password",
-    "FullName": "Your Full Name",
-    "Bio": "A short bio about yourself",
-    "ProfilePictureURL": "http://example.com/profile.jpg"
+  "Username": "john_doe",
+  "Email": "john.doe@example.com",
+  "PasswordHash": "12345678"
 }
 
 
@@ -125,13 +18,11 @@ POST http://localhost:4400/user/register
 Content-Type: application/json
 
 {
-    "Username": "Dante",
-    "Email": "dante@yopmailmail.com",
-    "Password": "12345678",
-    "FullName": "Dante Bowe",
-    "Bio": "A short bio about yourself",
-    "ProfilePictureURL": "http://example.com/profile.jpg"
+  "Username": "The User",
+  "Email": "theuser@gmail.com",
+  "PasswordHash": "12345678"
 }
+
 
 
 ### login 
@@ -139,6 +30,111 @@ POST http://localhost:4400/user/login
 Content-Type: application/json
 
 {
-    "Email": "your_email@example.com",
-    "Password": "$2b$05$Ypog85Jvld8LKjed9lfhdOPNYKVjBkRp3n3n38wp3OqbMDP.o7ld6"
+    "Email": "theuser@gmail.com",
+    "PasswordHash": "12345678"
 }
+
+### login 
+POST http://localhost:4400/user/login
+Content-Type: application/json
+
+{
+    "Email": "crispinmanda@gmail.com",
+    "PasswordHash": "12345678"
+}
+
+
+
+### fetching users PROFILE
+GET http://localhost:4400/user
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiJkNWU3NGM4ZS05NmZlLTRlYzUtOTIzMS0zOGZmMjhiMjBkYzYiLCJFbWFpbCI6ImNyaXNwaW5tYW5kYUBnbWFpbC5jb20iLCJQYXNzd29yZEhhc2giOiIkMmIkMDUkMmJmTjNoQ1dkVGRQNGlmUUJRMTBZdWxmbFZOOHlDWlFwR0tjdXAyOWh6blhvc1IzZ2NzaTIiLCJMYXN0TmFtZSI6bnVsbCwiRGF0ZU9mQmlydGgiOm51bGwsIlJlZ2lzdHJhdGlvbkRhdGUiOiIyMDIzLTEyLTA4VDExOjE5OjU0LjY2M1oiLCJQcm9maWxlUGljdHVyZVVybCI6bnVsbCwiV2Vic2l0ZSI6bnVsbCwiTG9jYXRpb24iOm51bGwsIklzVmVyaWZpZWQiOmZhbHNlLCJPdHBTZWNyZXQiOm51bGwsImlhdCI6MTcwMjU2MzA2NCwiZXhwIjoxNzAyNjQ5NDY0fQ.09KKerGC01HZo1MvUGnQJSEEctFsHSIII6rmEuCmUXI
+
+### fetching one user
+GET http://localhost:4400/user/1d98c619-e8fc-478f-93a1-d94117db1be1
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2M2U1MzNiMy00NjZkLTQ0ZmEtYWE3Yi0wOWU5MmZjMWFlYzAiLCJFbWFpbCI6InRoZXVzZXJAZ21haWwuY29tIiwiUGFzc3dvcmRIYXNoIjoiJDJiJDA1JDRQMUZwaG5aY0JYRzVEZC9YLkQ4YmV4Lnl6OXZzbDB5bWliMmsxT3g1SVBYRURKNWsySVk2IiwiTGFzdE5hbWUiOm51bGwsIkRhdGVPZkJpcnRoIjpudWxsLCJSZWdpc3RyYXRpb25EYXRlIjoiMjAyMy0xMi0xNVQxMjozODoxOC45NzNaIiwiUHJvZmlsZVBpY3R1cmVVcmwiOm51bGwsIldlYnNpdGUiOm51bGwsIkxvY2F0aW9uIjpudWxsLCJJc1ZlcmlmaWVkIjpmYWxzZSwiT3RwU2VjcmV0IjpudWxsLCJpYXQiOjE3MDI2MzMxOTUsImV4cCI6MTcwMjcxOTU5NX0.3msnngJYwTtg7TYCoZMVoxVLHjBw2V5NYeWRZgrnY9c
+
+
+####POST ROUTES
+
+###Create Post
+POST http://localhost:4400/post/create
+Content-Type: application/json
+
+{
+ "UserId":"1d98c619-e8fc-478f-93a1-d94117db1be1",
+  "Content": "This is the content of the new user"
+  
+}
+
+####Get All Posts
+
+GET http://localhost:4400/post/Allposts
+
+
+###Create comment
+POST http://localhost:4400/post/createcomment
+Content-Type: application/json
+
+{
+  "Content": "This is a another comment for you.",
+  "UserId": "1d98c619-e8fc-478f-93a1-d94117db1be1" ,  
+  "PostId": "2de85919-adc1-4560-85dd-cd82aa951e87"      
+}
+
+
+
+### All comment
+
+GET http://localhost:4400/post/allcomments
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiJkNWU3NGM4ZS05NmZlLTRlYzUtOTIzMS0zOGZmMjhiMjBkYzYiLCJFbWFpbCI6ImNyaXNwaW5tYW5kYUBnbWFpbC5jb20iLCJQYXNzd29yZEhhc2giOiIkMmIkMDUkMmJmTjNoQ1dkVGRQNGlmUUJRMTBZdWxmbFZOOHlDWlFwR0tjdXAyOWh6blhvc1IzZ2NzaTIiLCJMYXN0TmFtZSI6bnVsbCwiRGF0ZU9mQmlydGgiOm51bGwsIlJlZ2lzdHJhdGlvbkRhdGUiOiIyMDIzLTEyLTA4VDExOjE5OjU0LjY2M1oiLCJQcm9maWxlUGljdHVyZVVybCI6bnVsbCwiV2Vic2l0ZSI6bnVsbCwiTG9jYXRpb24iOm51bGwsIklzVmVyaWZpZWQiOmZhbHNlLCJPdHBTZWNyZXQiOm51bGwsImlhdCI6MTcwMjU3NjIzMiwiZXhwIjoxNzAyNjYyNjMyfQ.GyxcbYuXWeDem1_WMu69NRRAttcKrRUTCTgCdAfIAqg
+
+
+###Edit Comment
+PUT http://localhost:4400/post/updatecomment
+Content-Type: application/json
+
+{
+    "PostId":"2de85919-adc1-4560-85dd-cd82aa951e87",
+    "UserId": "22a57df2-7653-4c60-998d-5dd23580df21",
+    "Content": "Not today try next week",
+    "CommentId": "2442837b-be91-4a70-9078-e7fc71d17524"
+}
+
+
+
+
+
+### Likes
+
+PUT  http://localhost:4400/user/2de85919-adc1-4560-85dd-cd82aa951e87/like
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiJkNWU3NGM4ZS05NmZlLTRlYzUtOTIzMS0zOGZmMjhiMjBkYzYiLCJFbWFpbCI6ImNyaXNwaW5tYW5kYUBnbWFpbC5jb20iLCJQYXNzd29yZEhhc2giOiIkMmIkMDUkMmJmTjNoQ1dkVGRQNGlmUUJRMTBZdWxmbFZOOHlDWlFwR0tjdXAyOWh6blhvc1IzZ2NzaTIiLCJMYXN0TmFtZSI6bnVsbCwiRGF0ZU9mQmlydGgiOm51bGwsIlJlZ2lzdHJhdGlvbkRhdGUiOiIyMDIzLTEyLTA4VDExOjE5OjU0LjY2M1oiLCJQcm9maWxlUGljdHVyZVVybCI6bnVsbCwiV2Vic2l0ZSI6bnVsbCwiTG9jYXRpb24iOm51bGwsIklzVmVyaWZpZWQiOmZhbHNlLCJPdHBTZWNyZXQiOm51bGwsImlhdCI6MTcwMjU3NjIzMiwiZXhwIjoxNzAyNjYyNjMyfQ.GyxcbYuXWeDem1_WMu69NRRAttcKrRUTCTgCdAfIAqg
+
+{
+  "PostId": "2de85919-adc1-4560-85dd-cd82aa951e87" ,
+  "UserId": "22a57df2-7653-4c60-998d-5dd23580df21"  
+     
+}
+
+
+### Follow
+
+POST  http://localhost:4400/user/Follow/659237ec-abb6-4b1a-ba4b-5544d14cea06
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiJkNWU3NGM4ZS05NmZlLTRlYzUtOTIzMS0zOGZmMjhiMjBkYzYiLCJFbWFpbCI6ImNyaXNwaW5tYW5kYUBnbWFpbC5jb20iLCJQYXNzd29yZEhhc2giOiIkMmIkMDUkMmJmTjNoQ1dkVGRQNGlmUUJRMTBZdWxmbFZOOHlDWlFwR0tjdXAyOWh6blhvc1IzZ2NzaTIiLCJMYXN0TmFtZSI6bnVsbCwiRGF0ZU9mQmlydGgiOm51bGwsIlJlZ2lzdHJhdGlvbkRhdGUiOiIyMDIzLTEyLTA4VDExOjE5OjU0LjY2M1oiLCJQcm9maWxlUGljdHVyZVVybCI6bnVsbCwiV2Vic2l0ZSI6bnVsbCwiTG9jYXRpb24iOm51bGwsIklzVmVyaWZpZWQiOmZhbHNlLCJPdHBTZWNyZXQiOm51bGwsImlhdCI6MTcwMjU3NjIzMiwiZXhwIjoxNzAyNjYyNjMyfQ.GyxcbYuXWeDem1_WMu69NRRAttcKrRUTCTgCdAfIAqg
+
+{
+  "FollowerUserId": "22a57df2-7653-4c60-998d-5dd23580df21",
+  "FollowingUserId": "659237ec-abb6-4b1a-ba4b-5544d14cea06"
+}
+
+
+
+### getAllFollowers
+
+GET  http://localhost:4400/user/getAllFollowers/
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiJkNWU3NGM4ZS05NmZlLTRlYzUtOTIzMS0zOGZmMjhiMjBkYzYiLCJFbWFpbCI6ImNyaXNwaW5tYW5kYUBnbWFpbC5jb20iLCJQYXNzd29yZEhhc2giOiIkMmIkMDUkMmJmTjNoQ1dkVGRQNGlmUUJRMTBZdWxmbFZOOHlDWlFwR0tjdXAyOWh6blhvc1IzZ2NzaTIiLCJMYXN0TmFtZSI6bnVsbCwiRGF0ZU9mQmlydGgiOm51bGwsIlJlZ2lzdHJhdGlvbkRhdGUiOiIyMDIzLTEyLTA4VDExOjE5OjU0LjY2M1oiLCJQcm9maWxlUGljdHVyZVVybCI6bnVsbCwiV2Vic2l0ZSI6bnVsbCwiTG9jYXRpb24iOm51bGwsIklzVmVyaWZpZWQiOmZhbHNlLCJPdHBTZWNyZXQiOm51bGwsImlhdCI6MTcwMjU3NjIzMiwiZXhwIjoxNzAyNjYyNjMyfQ.GyxcbYuXWeDem1_WMu69NRRAttcKrRUTCTgCdAfIAqg
+
+

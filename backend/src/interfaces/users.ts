@@ -1,20 +1,25 @@
 import { Request } from "express";    
 
 export interface User {
-    UserID: string;
+    userId: string;
     Username: string;
-    PasswordHash: string;
     Email: string;
-    FullName?: string;
-    Bio?: string;
-    ProfilePictureURL?: string;
-    RegistrationDate: string; // Assuming a string for simplicity; you might want to use a Date type
-    FollowersCount: number;
-    FollowingCount: number;
-    PostsCount: number;
-}
+    PasswordHash: string;
+    firstName?: string;
+    lastName?: string;
+    dateOfBirth?: Date;
+    registrationDate?: Date;
+    profilePictureUrl?: string;
+    bio?: string;
+    website?: string;
+    location?: string;
+    isVerified: boolean;
+    otpSecret?: string;
+    welcomed: boolean;
+  }
+  
 
 export interface LoginUser extends Request{
     email: string,
-    password: string
+    passwordHash: string
 }

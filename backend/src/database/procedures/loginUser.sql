@@ -1,59 +1,52 @@
-CREATE PROCEDURE loginUser
-    @email NVARCHAR(100),
-    @password NVARCHAR(100)
+CREATE OR ALTER PROCEDURE loginUser
+    @Email VARCHAR(255),
+    @PasswordHash VARCHAR(255)
 AS
 BEGIN
     SET NOCOUNT ON;
 
-DECLARE @UserID NVARCHAR(100),
-        @Username NVARCHAR(50),
-        @FullName NVARCHAR(100),
-        @Bio VARCHAR(MAX),  -- Change to VARCHAR(MAX) here
-        @Password NVARCHAR(100),
-        @ProfilePictureURL NVARCHAR(255)
-       
+    DECLARE @UserId VARCHAR(100),
+            @Username VARCHAR(50),
+            @StoredPasswordHash VARCHAR(255);
 
-    SELECT TOP 1
-        @UserID = UserID,
+    -- Check if the provided email exists in the Users table
+    SELECT
+        @UserId = UserId,
         @Username = Username,
-        @FullName = FullName,
-        @Bio = Bio,
-        @Password = Password,  -- Assuming your hashed password is stored in the Password column
-        @ProfilePictureURL = ProfilePictureURL
-      
+        @StoredPasswordHash = PasswordHash
     FROM Users
-    WHERE Email = @email;
+    WHERE Email = @Email;
 
-    IF @UserID IS NOT NULL
+    -- Check if the user was found
+    IF @UserId IS NOT NULL
     BEGIN
-        -- Check password hash
-        IF HASHBYTES('SHA2_256', @password) = CAST('0x' + @Password AS VARBINARY(64))
+        -- Verify the password using the stored hash
+        IF @StoredPasswordHash IS NOT NULL AND @StoredPasswordHash = @PasswordHash
         BEGIN
-            SELECT @UserID AS UserID,
-                   @Username AS Username,
-                   @FullName AS FullName,
-                   @Bio AS Bio,
-                   @ProfilePictureURL AS ProfilePictureURL
-                   
+            -- Return user information or set output parameters as needed
+            SELECT
+                @UserId AS UserId,
+                @Username AS Username;
         END
         ELSE
         BEGIN
             -- Incorrect password
-            SELECT 'Incorrect password' AS Error;
+            THROW 50001, 'Incorrect password', 1;
         END
     END
     ELSE
     BEGIN
         -- User not found
-        SELECT 'User not found' AS Error;
+        THROW 50002, 'Email not found', 1;
     END
 END;
 
 
-CREATE OR ALTER PROCEDURE loginUser(@email VARCHAR(200), @password VARCHAR(200))
+CREATE OR ALTER PROCEDURE loginUser ( @Email VARCHAR(255),
+    @PasswordHash VARCHAR(255) )
 AS
 BEGIN
 
-    SELECT * FROM Users WHERE email= @email
+    SELECT * FROM Users WHERE Email= @Email
 
 END

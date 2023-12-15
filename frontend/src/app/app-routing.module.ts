@@ -10,6 +10,7 @@ import { TalkyComponent } from './talky/talky.component';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { PostCreateModalComponent } from './post-create-modal/post-create-modal.component';
+import { CommentCreateComponent } from './comment-create/comment-create.component';
 
 const routes: Routes = [
   { path: '', component: TalkyComponent },
@@ -19,9 +20,9 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'profile-edit', component: EditProfileComponent },
   { path: 'login', component:LoginComponent },
-  { path: 'register', component:RegisterComponent },
   { path: 'create', component:PostCreateComponent },
   {path: 'modal-create',component:PostCreateModalComponent },
+  {path: 'comment',component:CommentCreateComponent },
   { path: '**', component:NotFoundComponent }
 ];
 

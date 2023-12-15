@@ -1,0 +1,14 @@
+
+
+USE TalkyDb
+
+
+
+
+
+
+CREATE OR ALTER PROCEDURE fetchOneUser @UserId VARCHAR(100)
+AS
+BEGIN
+    SELECT * FROM Users WHERE UserId = @UserId
+END

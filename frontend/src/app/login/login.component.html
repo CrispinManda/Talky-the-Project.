@@ -1,57 +1,30 @@
-
-
-
-    <div class="flex flex-col h-screen justify-center items-center bg-white dark:bg-slate-900">
-
-
-        <div class="max-w-sm mx-auto md:px-10 p-4 w-full">
-
-            <!-- uk -scrollspy="target: > * > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true" -->
-            <div>
-
-                <!-- logo -->
-                <!-- <div class="flex justify-center mb-12" uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true">
-                    <img src="assets/images/logo.html" alt="" class="w-auto h-16 shrink-0 bg-fuchsia-100 px-3 rounded-2xl p-2.5" >
-                </div> -->
-
-
-                <form class="space-y-3">
-                    <!-- method="#" action="#" class="space-y-3"  uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true" -->
-                    <input class="!w-full" id="email" name="email" type="email"  placeholder="Email" required=""> 
-                    <input class="!w-full" id="email" name="email" type="email"  placeholder="Password" required=""> 
-
-                    <a href="#" class="hidden">
-                        <div class="text-sm text-right text-gray-400 py-4"> Forget password </div>
-                    </a>
-
-                    <button type="submit" class="font-medium w-full rounded-lg bg-slate-900 py-1.5 px-4 text-white h-[38px] active:scale-[0.97] transition-all duration-150"> <span>Sign in</span> </button>
- 
-                    <div class="flex gap-3 justify-center text-2xl py-5 text-slate-500">
-
-                        <!-- <a href="#"> <ion-icon name="logo-facebook"></ion-icon> </a>
-                        <a href="#"> <ion-icon name="logo-google"></ion-icon> </a>
-                        <a href="#"> <ion-icon name="logo-apple"></ion-icon> </a>  -->
-
-                    </div>
-
-                    <div class="space-x-2 text-sm text-center text-slate-400 dark:text-white/70">
-                        <span> No account? </span>
-                        <span>—</span>
-                        <a routerLink="/register" class="text-gray-600 hover:text-gray-500">Join now</a>
-                    </div>
- 
-                </form>
-
-                 
-            </div>
-
-
+<div class="relative mx-auto w-full max-w-md bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10">
+    <div class="w-full">
+        <div class="text-center">
+            <h1 class="text-3xl font-semibold text-gray-900">Sign in</h1>
+            <p class="mt-2 text-gray-500">Sign in below to access your account</p>
         </div>
-
+        <div class="mt-5">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="relative mt-6">
+                    <input type="email" formControlName="email" placeholder="Email Address" class="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none" autocomplete="NA" />
+                    <label for="email" class="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out"
+                        [class.peer-placeholder-shown:]="!loginForm.get('email').value" [class.peer-focus:]="loginForm.get('email').value">Email Address</label>
+                </div>
+                <div class="relative mt-6">
+                    <input type="password" formControlName="password" placeholder="Password" class="peer peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none" />
+                    <label for="password" class="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out"
+                        [class.peer-placeholder-shown:]="!loginForm.get('password').value" [class.peer-focus:]="loginForm.get('password').value">Password</label>
+                </div>
+                <div class="my-6">
+                    <button type="submit" class="w-full rounded-md bg-black px-3 py-4 text-white focus:bg-gray-600 focus:outline-none">Sign in</button>
+                </div>
+                <p class="text-center text-sm text-red-500" *ngIf="loginError">{{ loginError }}</p>
+                <p class="text-center text-sm text-green-500" *ngIf="loginSuccess">{{ loginSuccess }}</p>
+                <p class="text-center text-sm text-gray-500">Don't have an account yet?
+                    <a routerLink="/register" class="font-semibold text-gray-600 hover:underline focus:text-gray-800 focus:outline-none">Sign up</a>.
+                </p>
+            </form>
+        </div>
     </div>
-
-   
-
-
- 
-
+</div>

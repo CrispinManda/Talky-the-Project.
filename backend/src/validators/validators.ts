@@ -21,16 +21,14 @@ export const loginUserSchema = joi.object({
 export const registerUsersSchema = joi.object({
         Username: joi.string().min(3).max(50).required(),
         Email: joi.string().email().required(),
-        Password: joi.string().min(6).required(),
-        FullName: joi.string().max(100),
-       // Bio: joi.string(),
-       // ProfilePictureURL: joi.string().uri(),
+        PasswordHash: joi.string().min(6).required(),
+     
     
        
 });
 
 export const loginUsersSchema = joi.object({
         Email: joi.string().email().required(), 
-        Password: joi.string().required()
+        PasswordHash: joi.string().required()
 })
 
