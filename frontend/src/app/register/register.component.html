@@ -8,19 +8,16 @@
             <form [formGroup]="registrationForm" (ngSubmit)="createUsers()">
                 <div class="relative mt-6">
                     <input type="text" formControlName="Username" id="name" placeholder="Name" class="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none" />
-                    <!-- <label for="name" class="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out" [class.peer-placeholder-shown:]="!registrationForm.get('name').value" [class.peer-focus:]="registrationForm.get('name').value">Name</label> -->
                     <div *ngIf="registrationForm.get('name')?.invalid && registrationForm.get('name')?.touched" class="text-red-500">Name is required</div>
                 </div>
-              <!-- Add these lines after the "Name" form control -->
+             
                 <div class="relative mt-6">
                     <input type="email" formControlName="Email" id="email" placeholder="Email Address" class="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none" />
-                    <!-- <label for="email" class="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out" [class.peer-placeholder-shown:]="!registrationForm.get('email').value" [class.peer-focus:]="registrationForm.get('email').value">Email Address</label> -->
                     <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched" class="text-red-500">Please enter a valid email address</div>
                 </div>
                 
                 <div class="relative mt-6">
                     <input type="password" formControlName="PasswordHash" id="password" placeholder="Password" class="peer peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none" />
-                    <!-- <label for="password" class="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out" [class.peer-placeholder-shown:]="!registrationForm.get('password').value" [class.peer-focus:]="registrationForm.get('password').value">Password</label> -->
                     <div *ngIf="registrationForm.get('PasswordHash')?.invalid && registrationForm.get('PasswordHash')?.touched" class="text-red-500">Password must be at least 6 characters long</div>
                 </div>
 
