@@ -4,6 +4,7 @@ import {validatePost,validatePostId,validateUpdatePost,} from "../validators/pos
 import { Post, Comment } from "../interfaces/post";
 import { execute, query } from "../dbhelpers/dbHelper";
 import { validateComment, validateCommentId, validateUpdateComment } from "../validators/comments";
+import dbHelper from "../dbhelpers/dbhelpers";
 
 //CREATE POSTS
 export const createPost = async (req: Request, res: Response) => {
@@ -156,7 +157,8 @@ export const createComment = async (req: Request, res: Response) => {
       UserId,
     };
 
-    const procedure = "createComment";
+    const procedure = "addCommentAndUpdateCount";
+    //"createComment";
     const params = newcomment;
 
     await execute(procedure, params);
@@ -166,6 +168,52 @@ export const createComment = async (req: Request, res: Response) => {
     res.send((error as Error).message);
   }
 };
+
+
+
+export const createComments = async (req: Request, res: Response) => {
+  try {
+    const { Content, UserId, PostId } = req.body;
+    const CommentId = v4();
+  
+  console.log("This is the" + req.body);
+  
+    // Call the stored procedure to handle the comment creation
+    const createCommentProcedure = "createComments";
+    const createCommentParams = { CommentId, Content, PostId, UserId };
+
+    const result = await execute(createCommentProcedure, createCommentParams);
+
+    console.log("This is the", result);
+    
+
+    // Check the result from the stored procedure and send an appropriate response
+    if (result && result.recordset.length !== 0) {
+      console.log(result.recordset);
+      
+      const message = result.recordset[0].Message;
+
+      if (message.includes("Comment created successfully")) {
+        // Update the comments count in the corresponding post
+       const updateCommentsQuery = `UPDATE Posts SET Comments = Comments + 1 WHERE PostId = '${PostId}'`;
+       await dbHelper.execute(updateCommentsQuery);
+
+
+        return res.status(200).json({ message });
+      }
+
+      return res.status(500).json({ error: message });
+    } else {
+      return res
+        .status(500)
+        .json({ error: "Failed to process the comment creation" });
+    }
+  } catch (error) {
+    console.error("Error in createComment:", error);
+    return res.status(500).json({ error: error });
+  }
+};
+
 
 
 export const updateComment = async (req: Request, res: Response) => {

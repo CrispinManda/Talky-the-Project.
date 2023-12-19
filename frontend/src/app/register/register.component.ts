@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
-import { usersDetails } from 'src/interfaces/users';
+import { User, usersDetails } from 'src/interfaces/users';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,9 +12,15 @@ import { usersDetails } from 'src/interfaces/users';
 })
 export class RegisterComponent  {
 
-  registrationForm!: FormGroup;
+  registrationForm!:FormGroup
+  error:boolean = false;
+  success:boolean = false;
+  errorMessage:string = ''
+  successMessage:string = ''
 
-  constructor(private fb: FormBuilder,private authService:AuthService,private apiService:ApiService) { 
+  
+
+  constructor(private fb: FormBuilder,private authService:AuthService,private apiService:ApiService,  private router: Router) { 
     this.registrationForm = this.fb.group({
       Username: ['', Validators.required],
       Email: ['', [Validators.required, Validators.email]],
@@ -27,30 +34,40 @@ export class RegisterComponent  {
    
   // }
 
-  markAllFieldsAsTouched(formGroup: FormGroup) {
-    Object.values(formGroup.controls).forEach(control => {
-      control.markAsTouched();
 
-      if (control instanceof FormGroup) {
-        this.markAllFieldsAsTouched(control);
-      }
-    });
-  }
+  async createUsers(){
+    
+    let user_details: User = this.registrationForm.value;
+    
+    
+     let response: any= await this.authService.registerUser(user_details)
+     if(response.error){
+      this.error = true
+      this.errorMessage = response.error
 
-  createUsers() {
+      setTimeout(() => {
+        this.errorMessage = ''
+      this.error = false
 
-    if (this.registrationForm.valid) {
-      console.log (this.registrationForm.value);
+      }, 3000);
 
-      let details:usersDetails = this.registrationForm.value
-      this.apiService.createUsers(details)
-      // Handle form submission logic
-      console.log('Form submitted:', this.registrationForm.value);
-    } else {
-      // Mark all fields as touched to display error messages
-      this.markAllFieldsAsTouched(this.registrationForm);
+
+     }
+
+     else if(response.message){
+      this.success = true
+      this.successMessage = "user Registered successfully"
+
+           setTimeout( async() => {     
+            this.success = false
+            this.successMessage = ""
+      
+          this.router.navigate(['/login'])
+        }, 2000);
+
+     }
     }
-   
+    
+
   }
-   
-}
+

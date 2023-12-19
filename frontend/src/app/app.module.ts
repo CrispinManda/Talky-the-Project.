@@ -24,6 +24,7 @@ import { PhotoUploadDialogComponent } from './photo-upload-dialog/photo-upload-d
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostCreateModalComponent } from './post-create-modal/post-create-modal.component';
 import {  HttpClientModule } from '@angular/common/http';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {  HttpClientModule } from '@angular/common/http';
     NotFoundComponent,
     TalkyComponent,
     PhotoUploadDialogComponent,
-    PostCreateModalComponent
+    PostCreateModalComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

@@ -22,110 +22,26 @@
 
                         
                         
-                        <!--  post image-->
-                        <div class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2">
 
-                            <!-- post heading -->
-                            <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">
-                                <a href="profile.html"> <img src="https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg" alt="" class="w-9 h-9 rounded-full"> </a>  
-                                <div class="flex-1">
-                                    <a href="profile.html"> <h4 class="text-black dark:text-white"> Monroe Parker </h4> </a>  
-                                    <div class="text-xs text-gray-500 dark:text-white/80"> 2 hours ago</div>
-                                </div>
-
-                            </div>
-                            
-                            <!-- post image -->
-                            <div class="relative w-full lg:h-72 h-full sm:px-4">
-                                <img src="https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg" alt="" class="sm:rounded-lg w-full h-full object-cover">
-                            </div>
-
-                            <!-- post icons -->
-                            <div class="sm:p-4 p-2.5 flex items-center gap-4 text-xs font-semibold">
-                                <div class="flex items-center gap-2.5">
-                                    <button type="button" class="button__ico text-red-500 bg-red-100 dark:bg-slate-700"> 
-                                        <!-- <ion-icon class="text-lg" name="heart"></ion-icon>  -->
-                                        <i class="fa-solid fa-heart text-lg"></i>
-                                    </button>
-                                    <a href="#">1,380</a>
-                                </div>
-                                <div class="flex items-center gap-3">
-                                    <button type="button" class="button__ico bg-slate-200/70 dark:bg-slate-700"> 
-                                        <!-- <ion-icon class="text-lg" name="chatbubble-ellipses"></ion-icon> -->
-                                        <i class="fa-solid fa-comment text-lg"></i>
-                                     </button>
-                                    <span>260</span>
-                                </div>
-                                <button type="button" class="button__ico ml-auto">
-                                     <!-- <ion-icon class="text-xl" name="paper-plane-outline"></ion-icon> -->
-                                     <i class="fa-solid fa-paper-plane text-xl"></i>
-                                     </button>
-                                <button type="button" class="button__ico"> 
-                                    <!-- <ion-icon class="text-xl" name="share-outline"></ion-icon>  -->
-                                    <i class="fa-solid fa-share text-xl"></i>
-                                </button>
-                            </div>
-
-                            <!-- comments -->
-                            <div class="sm:p-4 p-2.5 border-t border-gray-100 font-normal space-y-3 relative dark:border-slate-700/40"> 
-                        
-                                <div class="flex items-start gap-3 relative">
-                                    <a href="profile.html"> <img src="https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg" alt="" class="w-6 h-6 mt-1 rounded-full"> </a>
-                                    <div class="flex-1">
-                                        <a href="profile.html" class="text-black font-medium inline-block dark:text-white"> Steeve </a>
-                                        <p class="mt-0.5">What a beautiful photo! I love it. 😍 </p>
-                                         <div class="container" style="display: flex; flex-direction: row; gap: 10px;">
-                                            <p>6m</p> 
-                                            <p> <b>Like</b> </p>
-                                            <p><b>Reply</b> </p>
-                                         </div>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-3 relative">
-                                    <a href="profile.html"> <img src="https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg" alt="" class="w-6 h-6 mt-1 rounded-full"> </a>
-                                    <div class="flex-1">
-                                        <a href="profile.html" class="text-black font-medium inline-block dark:text-white"> Monroe </a>
-                                        <p class="mt-0.5">   You captured the moment.😎 </p>
-                                    </div>
-                                </div>
-
-                                <button type="button" class="flex items-center gap-1.5 text-gray-500 hover:text-blue-500 mt-2">
-                                    <!-- <ion-icon name="chevron-down-outline" class="ml-auto duration-200 group-aria-expanded:rotate-180"></ion-icon> -->
-                                    More Comment
-                                </button>
-
-                            </div>
-
-                            <!-- add comment -->
-                            <app-comment-create></app-comment-create>
-
-
-                        </div>
 
 
                         <!-- post text-->
-                        <div class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2">
+                        <div *ngFor="let post of posts" class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2">
 
                             <!-- post heading -->
                             <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">
                                 <a href="profile.html"> <img src="https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg" alt="" class="w-9 h-9 rounded-full"> </a> 
                                 <div class="flex-1">
                                     <a href="profile.html"> <h4 class="text-black dark:text-white"> John Michael </h4> </a> 
-                                    <div class="text-xs text-gray-500 dark:text-white/80"> 2 hours ago</div>
-                                </div>
-
-                                <div class="-mr-1">
-                                    <button type="button" class="button__ico w-8 h-8"> 
-                                        <!-- <ion-icon class="text-xl" name="ellipsis-horizontal"></ion-icon> -->
-                                     </button>
-
+                                    <div class="text-xs text-gray-500 dark:text-white/80"> {{ post.PostDate }}</div>
                                 </div>
                             </div>
                              
-                            <!-- slide images -->
-                            <div class="sm:px-4 p-2.5 pt-0">
-                                <p class="font-normal"> Photography is the art of capturing light with a camera. It can be used to create images that tell stories, express emotions, or document reality. it can be fun, challenging, or rewarding. It can also be a hobby, a profession, or a passion. 📷 </p>
+                           <div class="sm:px-4 p-2.5 pt-0">
+                                <p class="font-normal"> {{ post.Content }} </p>
+                                <p><img [src]= "post.ImageUrl" ></p>
                             </div>
+                             
                              
 
                             <!-- post icons -->
@@ -218,6 +134,7 @@
                        
 
                     </div> 
+                    
 
 
                     <!-- right sidebar -->
@@ -237,56 +154,15 @@
     
                                 <div class="space-y-4 capitalize text-xs font-normal mt-5 mb-2 text-gray-500 dark:text-white/80">
     
-                                    <div class="flex items-center gap-3">
-                                        <a href="profile.html">
-                                            <img src="https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg" alt="" class="bg-gray-200 rounded-full w-10 h-10">
-                                        </a>
-                                        <div class="flex-1">
-                                            <a href="profile.html"><h4 class="font-semibold text-sm text-black dark:text-white">  Johnson smith</h4></a>
-                                            <div class="mt-0.5"> Suggested For You </div>
-                                        </div>
-                                        <button type="button" class="text-sm rounded-full py-1.5 px-4 font-semibold bg-secondery"> Follow </button>
-                                    </div>
-                                    <div class="flex items-center gap-3">
-                                        <a href="profile.html">
-                                            <img src="https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg" alt="" class="bg-gray-200 rounded-full w-10 h-10">
-                                        </a>
-                                        <div class="flex-1">
-                                            <a href="profile.html"><h4 class="font-semibold text-sm text-black dark:text-white"> James Lewis</h4></a>
-                                            <div class="mt-0.5"> Followed by Johnson </div>
-                                        </div>
-                                        <button type="button" class="text-sm rounded-full py-1.5 px-4 font-semibold bg-secondery"> Follow </button>
-                                    </div>
-                                    <div class="flex items-center gap-3">
-                                        <a href="profile.html">
-                                            <img src="https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg" alt="" class="bg-gray-200 rounded-full w-10 h-10">
-                                        </a>
-                                        <div class="flex-1">
-                                            <a href="profile.html"><h4 class="font-semibold text-sm text-black dark:text-white"> John Michael</h4></a>
-                                            <div class="mt-0.5"> Followed by Monroe  </div>
-                                        </div>
-                                        <button type="button" class="text-sm rounded-full py-1.5 px-4 font-semibold bg-secondery"> Follow </button>
-                                    </div>
-                                    <div class="flex items-center gap-3">
-                                        <a href="profile.html">
-                                            <img src="https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg" alt="" class="bg-gray-200 rounded-full w-10 h-10">
-                                        </a>
-                                        <div class="flex-1">
-                                            <a href="profile.html"><h4 class="font-semibold text-sm text-black dark:text-white">  Monroe Parker</h4></a>
-                                            <div class="mt-0.5"> Suggested For You </div>
-                                        </div>
-                                        <button type="button" class="text-sm rounded-full py-1.5 px-4 font-semibold bg-secondery"> Follow </button>
-                                    </div> 
-                                    <div class="flex items-center gap-3">
-                                        <a href="profile.html">
-                                            <img src="https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg" alt="" class="bg-gray-200 rounded-full w-10 h-10">
-                                        </a>
-                                        <div class="flex-1">
-                                            <a href="profile.html"><h4 class="font-semibold text-sm text-black dark:text-white">  Martin Gray</h4></a>
-                                            <div class="mt-0.5"> Suggested For You </div>
-                                        </div>
-                                        <button type="button" class="text-sm rounded-full py-1.5 px-4 font-semibold bg-secondery"> Follow </button>
-                                    </div>
+       <div *ngFor="let user of users" class="flex items-center gap-3 user-card bg-white p-4 rounded shadow mb-4">
+      <a [routerLink]="['/profile', user.UserId]">
+        <img [src]="user.ProfileImageUrl || 'https://placekitten.com/100/100'" alt="{{ user.Username }}" class="bg-gray-200 rounded-full w-10 h-10">
+      </a>
+      <div class="flex-1">
+        <a [routerLink]="['/profile', user.UserId]"><h4 class="font-semibold text-sm text-black dark:text-white">{{ user.Username }}</h4></a>
+        <div class="mt-0.5">Suggested For You</div>
+      </div>
+      <button type="button" class="text-sm rounded-full py-1.5 px-4 font-semibold bg-secondery">Follow</button>
                                 </div>
     
                             </div>
@@ -310,7 +186,7 @@
 
             </div> 
 
-        </main>
+        
         
     </div>
 

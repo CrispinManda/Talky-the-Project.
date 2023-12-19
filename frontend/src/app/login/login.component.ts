@@ -1,47 +1,66 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { User } from 'src/interfaces/users';
+import { userLogin } from 'src/interfaces/login';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
+  registrationForm!: FormGroup;
 
-  loginForm: FormGroup;
-  loginError: string;
-  loginSuccess: string;
+  errorMessage: string = '';
+  email: string = '';
+  name: string = '';
+  error: boolean = false;
+  success: boolean = false;
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  successMessage: string = '';
+  loggingIn: boolean = false;
+  loggedInState: false;
 
-  ngOnInit(): void {
-    this.initializeForm();
-  }
-
-  initializeForm() {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      Email: ['', [Validators.required, Validators.email]],
+      PasswordHash: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
-  onSubmit() {
-    // Perform login logic (you can replace this with your actual login service)
-    if (this.loginForm.valid) {
-      // Replace the following with your actual login service
-      const { email, password } = this.loginForm.value;
-      if (email === 'example@example.com' && password === 'password') {
-        this.loginSuccess = 'Login successful. Redirecting to home...';
-        // Simulate redirection after 2 seconds
-        setTimeout(() => {
-          this.router.navigate(['/']);
-        }, 2000);
-      } else {
-        this.loginError = 'Invalid email or password';
-      }
-    } else {
-      this.loginError = 'Please enter valid email and password';
+  ngOnInit(): void {}
+
+  async login() {
+    let user_details: userLogin = this.loginForm.value;
+
+    let response: any = await this.authService.login(user_details);
+
+    console.log(response);
+
+    if (response.error) {
+      this.error = true;
+      this.errorMessage = response.error;
+
+      setTimeout(() => {
+        this.errorMessage = '';
+        this.error = false;
+      }, 3000);
+    } else if (response.message) {
+      this.success = true;
+
+      this.successMessage = 'user login successfully';
+      setTimeout(() => {
+        this.success = false;
+        this.successMessage = '';
+        this.router.navigate(['/'])
+      }, 2000);
     }
   }
 }

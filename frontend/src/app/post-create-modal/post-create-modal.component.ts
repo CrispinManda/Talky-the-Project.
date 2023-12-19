@@ -14,6 +14,9 @@ createPost() {
 throw new Error('Method not implemented.');
 }
   imageUrl: string = '';
+  Content: string ="";
+  
+
   uploader: FileUploader = new FileUploader({
     url: 'https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/upload', // Replace with your Cloudinary upload URL
     method: 'POST',

@@ -27,3 +27,25 @@ BEGIN
         SELECT 'User has already liked the post' AS Message;
     END
 END;
+
+
+CREATE OR ALTER PROCEDURE likePost
+    @LikeId VARCHAR(100),
+    @UserId VARCHAR(100),
+    @PostId VARCHAR(100)
+AS
+BEGIN
+    INSERT INTO PostLikes (LikeId, UserId, PostId)
+    VALUES (@LikeId, @UserId, @PostId);
+END;
+
+
+
+CREATE OR ALTER PROCEDURE unLikePost
+    @UserId VARCHAR(100),
+    @PostId VARCHAR(100)
+AS
+BEGIN
+    DELETE FROM PostLikes
+    WHERE UserID = @UserId AND PostId = @PostId ;
+END;

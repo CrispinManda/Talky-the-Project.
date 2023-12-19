@@ -5,23 +5,6 @@ import mssql from  'mssql'
 import { sqlConfig } from "../config/sqlConfig";
 const dbhelper = new Connection
 
-export const createProject = async(req: Request, res: Response)=>{
-    try {
-        const id = v4()
-
-        const {project_name, project_description, project_deadline, assigned_to} = req.body
-
-        dbhelper.execute('createProject',{
-            project_id:id, project_name, project_description, project_deadline, assigned_to
-        })
-
-        return res.status(200).json({message: 'project created successfully'})
-    } catch (error) {
-        return res.json({
-            error: error
-        })
-    }
-}
 
 export const fetchProjects = async(req:Request, res:Response)=>{
     try {

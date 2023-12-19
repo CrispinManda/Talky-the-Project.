@@ -1,5 +1,0 @@
-CREATE OR ALTER PROCEDURE fetchAllTeams
-AS 
-BEGIN
-    SELECT * FROM Teams
-END

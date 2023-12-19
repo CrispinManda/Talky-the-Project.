@@ -13,7 +13,7 @@ import dbHelper from '../dbhelpers/dbhelpers'
 import dbhelpers from '../dbhelpers/dbhelpers'
 import { generateResetToken } from '../generateResetToken'
 import { validatePostId } from '../validators/post'
-import { execute } from '../dbhelpers/dbHelper'
+import { execute, query } from '../dbhelpers/dbHelper'
 
 
 export const registerUser = async (req: Request, res: Response) => {
@@ -363,3 +363,141 @@ export const getFollowers = async (req: Request, res: Response) => {
     });
   }
 };
+
+
+//TOGGLE BETWEEN LIKE AND UNLIKE
+export const toggleLikePost = async (req: Request, res: Response) => {
+  console.log(req.body);
+
+  try {
+    let LikeId = v4();
+
+    let { UserId, PostId } = req.body;
+    const likeexists = (
+      await query(
+        `SELECT * FROM PostLikes WHERE UserId = '${UserId}' AND PostId= '${PostId}'`
+      )
+    ).recordset;
+
+    if (!isEmpty(likeexists)) {
+      let result = await execute("unLikePost", {
+        UserId,
+        PostId,
+      });
+
+      if (result.rowsAffected[0] === 0) {
+        return res.status(404).json({
+          message: "Something went wrong, Pots not unliked",
+        });
+      } else {
+        return res.status(200).json({
+          message: "Post Unliked",
+        });
+      }
+    } else {
+      let result = await execute("likePost", {
+        LikeId,
+        UserId,
+        PostId
+      });
+
+      if (result.rowsAffected[0] === 0) {
+        return res.status(404).json({
+          message: "Something went wrong, Post not liked",
+        });
+      } else {
+        return res.status(200).json({
+          message: "Post Liked",
+        });
+      }
+    }
+  } catch (error) {
+    console.log(error);
+
+    return res.json({
+      error,
+    });
+  }
+}; 
+
+
+//FOLLOW AND UNFOLLOW USER
+export const toggleFollowUser = async (req: Request, res: Response) => {
+  console.log(req.body);
+
+  try {
+    let FollowerId = v4();
+
+    let { followingUserId, followedUserId } = req.body;
+    const relationsexists = (
+      await query(
+        `SELECT * FROM Followers WHERE followingUserId = '${followingUserId}' AND followedUserId= '${followedUserId}'`
+      )
+    ).recordset;
+
+    if (!isEmpty(relationsexists)) {
+      let result = await execute("unfollowUser", {
+        followingUserId,
+        followedUserId,
+      });
+
+      if (result.rowsAffected[0] === 0) {
+        return res.status(404).json({
+          message: "Something went wrong, user not followed",
+        });
+      } else {
+        return res.status(200).json({
+          message: "User Unfollowed",
+        });
+      }
+    } else {
+      let result = await execute("followUser", {
+        FollowerId,
+        followingUserId,
+        followedUserId,
+      });
+
+      if (result.rowsAffected[0] === 0) {
+        return res.status(404).json({
+          message: "Something went wrong, user not followed",
+        });
+      } else {
+        return res.status(200).json({
+          message: "User Followed",
+        });
+      }
+    }
+  } catch (error) {
+    console.log(error);
+
+    return res.json({
+      error,
+    });
+  }
+};
+
+
+// GET FOLLOWINGS
+export const getFollowings = async (req: Request, res: Response) => {
+  try {
+    const followingUserId = req.params.ID; // Update parameter name to match the stored procedure
+    console.log("FollowingUserId:", followingUserId);
+
+    const result = await execute("fetchFollowings", {
+      followingUserId, // Update parameter name to match the stored procedure
+    });
+
+    const followings = result.recordset;
+    console.log("Followings:", followings);
+
+    return res.status(200).json({
+      followings,
+    });
+  } catch (error) {
+    console.error("Error in getFollowings:", error);
+    return res.status(500).json({
+      error: "Internal server error",
+    });
+  }
+};
+

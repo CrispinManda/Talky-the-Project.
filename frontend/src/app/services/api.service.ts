@@ -11,7 +11,9 @@ export class ApiService {
 
   getUsers(){
     let token = localStorage.getItem('token') as string
-    return this.http.get<{Users: User[]}>('http://localhost:4400/user', {
+    return this.http.get<{
+      employees: any;Users: User[]
+}>('http://localhost:4400/user', {
       headers: new HttpHeaders({
         'Content-type': 'application/json',
         'token': token

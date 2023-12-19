@@ -1,6 +1,7 @@
 <div class="relative mx-auto w-full max-w-md bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10">
     <div class="w-full">
         <div class="text-center">
+            <div *ngIf="success" class="flex justify-center p-4 bg-green-200 text-green-500 rounded mb-2">{{successMessage}}</div>
             <h1 class="text-3xl font-semibold text-gray-900">Sign up</h1>
             <p class="mt-2 text-gray-500">Create an account to get started</p>
         </div>
@@ -8,6 +9,8 @@
             <form [formGroup]="registrationForm" (ngSubmit)="createUsers()">
                 <div class="relative mt-6">
                     <input type="text" formControlName="Username" id="name" placeholder="Name" class="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none" />
+                    <div *ngIf="error" class="flex justify-center p-4 bg-red-200 text-red-500 rounded mb-2">{{errorMessage}}</div>
+ 
                     <div *ngIf="registrationForm.get('name')?.invalid && registrationForm.get('name')?.touched" class="text-red-500">Name is required</div>
                 </div>
              

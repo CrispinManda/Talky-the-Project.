@@ -1,6 +1,6 @@
 // src/app/user.interface.ts
 export interface User {
-  userId: string;
+  UserId: string;
   Username: string;
   Email: string;
   PasswordHash: string;
