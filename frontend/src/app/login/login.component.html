@@ -9,7 +9,7 @@
         <form [formGroup]="loginForm" (ngSubmit)="login()">
           <div class="relative mt-6">
             <input type="email" formControlName="Email" id="email" placeholder="Email Address"
-                   class="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"/>
+                   class="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-dark focus:border-gray-500 focus:outline-none "/>
             <div *ngIf="loginForm.get('Email')?.invalid && loginForm.get('Email')?.touched"
                  class="text-red-500">Please enter a valid email address
             </div>
@@ -17,7 +17,7 @@
   
           <div class="relative mt-6">
             <input type="password" formControlName="PasswordHash" id="password" placeholder="Password"
-                   class="peer peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"/>
+                   class="peer peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-dark focus:border-gray-500 focus:outline-none"/>
             <div *ngIf="loginForm.get('PasswordHash')?.invalid && loginForm.get('PasswordHash')?.touched"
                  class="text-red-500">Password must be at least 6 characters long
             </div>
@@ -29,7 +29,7 @@
             </button>
           </div>
           <p class="text-center text-sm text-gray-500">Don't have an account?
-            <a href="/register" class="font-semibold text-gray-600 hover:underline focus:text-gray-800 focus:outline-none">Sign
+            <a href="/" class="font-semibold text-gray-600 hover:underline focus:text-gray-800 focus:outline-none">Sign
               up</a>.
           </p>
         </form>

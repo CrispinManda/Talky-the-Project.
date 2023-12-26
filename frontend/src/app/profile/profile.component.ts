@@ -4,14 +4,16 @@ import * as cloudinary from 'cloudinary-core';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent {
-  profileImage: string = 'https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg'; // Default image URL
+  profileImage: string = 'https://placekitten.com/100/100'; // Default image URL
   cloudinaryCore: any;
 
   constructor() {
-    this.cloudinaryCore = new cloudinary.Cloudinary({ cloud_name: 'YOUR_CLOUD_NAME' }); // Replace with your Cloudinary cloud name
+    this.cloudinaryCore = new cloudinary.Cloudinary({
+      cloud_name: 'YOUR_CLOUD_NAME',
+    }); // Replace with your Cloudinary cloud name
   }
 
   handleImageUpload(event: Event): void {
@@ -35,17 +37,17 @@ export class ProfileComponent {
     fetch(cloudinaryUrl, {
       method: 'POST',
       headers: {
-        'Authorization': `Basic ${btoa(`${apiKey}:`)}`
+        Authorization: `Basic ${btoa(`${apiKey}:`)}`,
       },
-      body: formData
+      body: formData,
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         // Handle the Cloudinary response, e.g., save the returned URL
         this.profileImage = data.secure_url;
         console.log('Cloudinary Response:', data);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error uploading image to Cloudinary:', error);
       });
   }

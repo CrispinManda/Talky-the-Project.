@@ -14,12 +14,13 @@ Content-Type: application/json
 
 ### register user
 
+
 POST http://localhost:4400/user/register
 Content-Type: application/json
 
 {
-  "Username": "Alex Alex",
-  "Email": "brom30193@gmail.com",
+  "Username": "Greewood Alex",
+  "Email": "greenwood@gmail.com",
   "PasswordHash": "12345678"
 }
 
@@ -64,7 +65,7 @@ Content-Type: application/json
 
 {
  "UserId":"1d98c619-e8fc-478f-93a1-d94117db1be1",
-  "Content": "This is the content of the new user"
+  "Content": "Intergration Review"
   
 }
 

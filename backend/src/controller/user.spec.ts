@@ -2,13 +2,13 @@ import mssql from 'mssql'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import {v4} from 'uuid'
-import { loginEmployee, registerEmployee } from './employeesController'
+import { loginUser, registerUser } from '../controller/usersController'
 import { Request, Response } from 'express'
 import dbHelper from '../dbhelpers/dbhelpers'
 
 jest.mock("../dbhelpers/dbhelpers")
 
-describe ("Employee Registration", ()=>{
+describe ("User Registration", ()=>{
  
     let res:any;
 
@@ -19,67 +19,13 @@ describe ("Employee Registration", ()=>{
         };
     })
 
-    // it("successfully registers an employee", async()=>{
-    //     const req = {
-    //         body: {
-    //             name: "Test Test", 
-    //             email: "test@yopmail.com", 
-    //             phone_no: "07857646576", 
-    //             id_no: "367577998", 
-    //             KRA_PIN: "jgjfuy86869", 
-    //             NHIF_NO: "NHIFT86SF", 
-    //             NSSF_NO: "NSSFLY986D", 
-    //             password: "HashedPass@word123"
-    //         }
-    //     }
-
-    //     // jest.mock('bcrypt', ()=>({
-    //     //     hash: jest.fn().mockResolvedValue("hashedPassword_khfguhdg_dzgjdf")
-    //     // }))
-
-    //     jest.spyOn(bcrypt, 'hash').mockResolvedValueOnce("HashedPass@word123" as never)
-
-    //     const mockedInput = jest.fn().mockReturnThis() //makes it chainable
-
-    //     const mockedExecute = jest.fn().mockResolvedValue({rowsAffected: [1]})
-
-    //     const mockedRequest = {
-    //         input: mockedInput,
-    //         execute: mockedExecute
-    //     }
-
-    //     const mockedPool = { 
-    //         request: jest.fn().mockReturnValue(mockedRequest)
-    //     }
-
-    //     // jest.mock('mssql', ()=>({
-    //     //     connect: jest.fn().mockResolvedValue(mockedPool)
-    //     // }))
-
-    //     jest.spyOn(mssql, 'connect').mockResolvedValue(mockedPool as never)
-
-    //     await registerEmployee(req as Request, res as any)
-
-    //     // Assertions
-
-    //     expect(res.json).toHaveBeenCalledWith({message: 'Employee registered successfully'})
-    //     expect(res.status).toHaveBeenCalledWith(200)
-    //     expect(mockedInput).toHaveBeenCalledWith('password',  mssql.VarChar, 'HashedPass@word123')
-    //     expect(mockedInput).toHaveBeenCalledWith('name',  mssql.VarChar, 'Test Test')
-    //     expect(mockedInput).toHaveBeenCalledWith('email',  mssql.VarChar, 'test@yopmail.com')
-    //     expect(mockedInput).toHaveBeenCalledWith('id_no',  mssql.Int, '367577998')
-    // })
+   
 
     it('registers a user using dbhelpers' , async()=>{
         const req = {
             body: {
                 name: "Test Test", 
                 email: "test@yopmail.com", 
-                phone_no: "07857646576", 
-                id_no: "367577998", 
-                KRA_PIN: "jgjfuy86869", 
-                NHIF_NO: "NHIFT86SF", 
-                NSSF_NO: "NSSFLY986D", 
                 password: "HashedPass@word123"
             }
         }
@@ -90,20 +36,16 @@ describe ("Employee Registration", ()=>{
             rowsAffected : [1]
         })
 
-        await registerEmployee(req as Request, res as any)
+        await registerUser(req as Request, res as any)
 
-        expect(res.json).toHaveBeenCalledWith({message: 'Employee registered successfully'})
+        expect(res.json).toHaveBeenCalledWith({message: 'User registered successfully'})
         expect(res.status).toHaveBeenCalledWith(200)
     })
 
 })
 
 
-/**
- * 
- * TESTING LOGIN FUNCTIONALITY
- * 
- */
+
 
 describe ("Testing Login Functionality", ()=>{
 
@@ -124,7 +66,7 @@ describe ("Testing Login Functionality", ()=>{
             }
         }
 
-        await loginEmployee(req as Request, res)
+        await loginUser(req as Request, res)
 
         expect(res.json).toHaveBeenCalledWith({"error": "\"email\" is not allowed to be empty"})
 
@@ -137,7 +79,7 @@ describe ("Testing Login Functionality", ()=>{
             }
         }
 
-        await loginEmployee(req as Request, res)
+        await loginUser(req as Request, res)
 
         expect(res.json).toHaveBeenCalledWith({"error": "\"email\" is required"})
 
@@ -157,7 +99,7 @@ describe ("Testing Login Functionality", ()=>{
             execute: jest.fn().mockResolvedValueOnce({recordset: []})
         } as never)
  
-        await loginEmployee(req as Request, res)
+        await loginUser(req as Request, res)
 
         expect(res.json).toHaveBeenCalledWith({error: "Email not found"}) 
     })
@@ -183,7 +125,7 @@ describe ("Testing Login Functionality", ()=>{
 
         jest.spyOn(bcrypt, 'compare').mockResolvedValueOnce(false as never)
 
-        await loginEmployee(req as Request, res)
+        await loginUser(req as Request, res)
 
         expect(res.json).toHaveBeenCalledWith({error: "Incorrect password"})
     })
@@ -191,7 +133,7 @@ describe ("Testing Login Functionality", ()=>{
     it("successfully logs in a user and returns a token", async()=>{
 
         let expectedUser = {
-            employee_id: "0adbb3b5-dead-448f-9ca1-44f93d0e5527",
+            User_id: "0adbb3b5-dead-448f-9ca1-44f93d0e5527",
             name: "Jane Doe",
             email: "correct@email.com",
             phone_no: '0754876562',
@@ -200,7 +142,7 @@ describe ("Testing Login Functionality", ()=>{
             NHIF_NO: '1170784J43',
             NSSF_NO: 'ksdhu7879DS',
             password: "$2b$05$S.fpxBj3qNllnIvd.sq/beDjNoP72TvaMAS.GrplxY75sFyh6qV7e",
-            role: "employee",
+            role: "User",
             welcomed: true
         }
 
@@ -221,7 +163,7 @@ describe ("Testing Login Functionality", ()=>{
 
         jest.spyOn(jwt, 'sign').mockReturnValueOnce("generate-token-jghjg-jyiugjxz-mmhjruyiu" as never)
 
-        await loginEmployee(req as Request, res)
+        await loginUser(req as Request, res)
 
         expect(res.json).toHaveBeenCalledWith({
             message: "Logged in successfully",

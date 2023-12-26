@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user-service.service';
 import { User } from 'src/interfaces/users';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-people-you-may-know',
@@ -13,7 +13,11 @@ export class PeopleYouMayKnowComponent implements OnInit {
 
   searchText = '';
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.loadPeopleYouMayKnow();
@@ -45,21 +49,24 @@ export class PeopleYouMayKnowComponent implements OnInit {
     );
   }
 
-  username: string = '';
-  viewUser(user: any) {
-    this.username = user.Username;
-    console.log(this.username);
+  // id: string = '';
+  // id2: string = '';
 
+  // user: User[] = [];
 
-    this.router.navigate(['/profile', this.username]);
-
-
-    const userDetails = {
-      username: this.username,
-    };
-
-    console.log(userDetails);
+  // async getAllUsers() {
     
-    localStorage.setItem('userDetails', JSON.stringify(userDetails));
+
+  //   this.route.params.subscribe((params) => {
+  //     this.id2 = params['UserId'];
+  //   });
+
+  //   let user = await this.userService.getUserById(this.id2);
+
+  //   console.log(user);
+
+  //   this.user = user;
   }
-}
+
+ 
+

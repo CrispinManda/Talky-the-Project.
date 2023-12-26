@@ -9,9 +9,9 @@ export const options = {
 export default function (){
 
     const body = JSON.stringify({
-        email: "dan@yopmail.com",
-        password: "12345678"
-    })
+      Email: "theuser@gmail.com",
+      PasswordHash: "12345678",
+    });
 
     const params = {
         headers:{
@@ -19,7 +19,7 @@ export default function (){
         }
     }
 
-    let response = http.post('http://localhost:4400/employee/login', body, params);
+    let response = http.post('http://localhost:4400/user/login', body, params);
 
     check(response, {
         'is status 200?' : (res)=>res.status == 200,

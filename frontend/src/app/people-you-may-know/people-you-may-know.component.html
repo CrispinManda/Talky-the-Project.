@@ -25,10 +25,10 @@
         <!-- <div *ngFor="let user of allusers"></div> -->
         <div *ngFor="let user of users | search:searchText  "  class="flex items-center gap-3 user-card bg-white p-4 rounded shadow mb-4">
       
-        <img (click)="viewUser(user)" [src]="user.profilePictureUrl || 'https://placekitten.com/100/100'" alt="{{ user.Username }}" class="bg-gray-200 rounded-full w-10 h-10">
-      
+        <img  [src]="user.profilePictureUrl || 'https://placekitten.com/100/100'" alt="{{ user.Username }}" class="bg-gray-200 rounded-full w-10 h-10">
+       
       <div class="flex-1">
-        <a [routerLink]="['/profile', user.UserId]"><h4 class="font-semibold text-sm text-black dark:text-white">{{ user.Username }}</h4></a>
+        <a [routerLink]="['/profile']"><h4 class="font-semibold text-sm text-black dark:text-white">{{ user.Username }}</h4></a>
         <div class="mt-0.5">Suggested For You</div>
       </div>
       <button type="button" class="text-sm rounded-full py-1.5 px-4 font-semibold bg-secondery">Follow</button>

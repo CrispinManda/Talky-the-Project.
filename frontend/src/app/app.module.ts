@@ -25,6 +25,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostCreateModalComponent } from './post-create-modal/post-create-modal.component';
 import {  HttpClientModule } from '@angular/common/http';
 import { SearchPipe } from './pipes/search.pipe';
+import { ProfilIdComponent } from './profil-id/profil-id.component';
+import { UpdateComponent } from './update/update.component';
+import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { SearchPipe } from './pipes/search.pipe';
     TalkyComponent,
     PhotoUploadDialogComponent,
     PostCreateModalComponent,
-    SearchPipe
+    SearchPipe,
+    ProfilIdComponent,
+    UpdateComponent,
+    UpdateprofileComponent
   ],
   imports: [
     BrowserModule,

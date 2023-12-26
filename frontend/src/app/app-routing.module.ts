@@ -11,19 +11,32 @@ import { PostCreateComponent } from './post-create/post-create.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { PostCreateModalComponent } from './post-create-modal/post-create-modal.component';
 import { CommentCreateComponent } from './comment-create/comment-create.component';
+import { ProfilIdComponent } from './profil-id/profil-id.component';
 
 const routes: Routes = [
-  { path: '', component: TalkyComponent },
+  { path: '', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'home', component: TalkyComponent },
   { path: 'people', component: PeopleYouMayKnowComponent },
-  { path: 'profile', component: ProfileComponent },
+  {
+    path: 'profile/11cbb3f2-5841-4f7a-b8eb-2eb439e41ec',
+    component: ProfileComponent,
+  },
   { path: 'profile-edit', component: EditProfileComponent },
-  { path: 'login', component:LoginComponent },
-  { path: 'create', component:PostCreateComponent },
-  {path: 'modal-create',component:PostCreateModalComponent },
-  {path: 'comment',component:CommentCreateComponent },
-  { path: '**', component:NotFoundComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'create', component: PostCreateComponent },
+  { path: 'modal-create', component: PostCreateModalComponent },
+  { path: 'comment', component: CommentCreateComponent },
+  { path: 'home', component: HomeComponent },
+  {
+    path: 'profile/11cbb3f2-5841-4f7a-b8eb-2eb439e41ec9',
+    component: ProfileComponent,
+  },
+  {
+    path: 'profile/11cbb3f2-5841-4f7a-b8eb-2eb439e',
+    component: ProfilIdComponent,
+  },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

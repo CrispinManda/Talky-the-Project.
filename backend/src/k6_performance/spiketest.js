@@ -13,6 +13,6 @@ export const options = {
 }
 
 export default function(){
-    http.get('http://localhost:4400/projects/')
+    http.get("http://localhost:4400/post/Allposts");
     sleep(1)
 }
